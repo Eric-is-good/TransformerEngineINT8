@@ -1,0 +1,2 @@
+# TransformerEngineINT8
+TransformerEngineINT8 是一个为PyTorch打造的高性能INT8量化加速框架，其设计灵感源自NVIDIA的Transformer Engine。
