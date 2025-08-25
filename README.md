@@ -5,7 +5,7 @@
 [](https://opensource.org/licenses/Apache-2.0)
 [](https://www.google.com/search?q=https://your-username.github.io/TransformerEngineINT8/)
 
-**TransformerEngineINT8** 是一个为旧世代显卡（A系列和30系及以前）打造的高性能INT8量化加速框架，其设计灵感源自NVIDIA的[Transformer Engine](https://github.com/NVIDIA/TransformerEngine)。它旨在通过一个极其简洁的API，为提供无缝的量化感知训练（Quantization-Aware Training, QAT）。
+**TransformerEngineINT8** 是一个为旧世代显卡（A系列和30系及以前）打造的高性能INT8量化加速训练框架，其设计灵感源自NVIDIA的[Transformer Engine](https://github.com/NVIDIA/TransformerEngine)。它旨在通过一个极其简洁的API，为提供无缝的量化感知训练（Quantization-Aware Training, QAT）。
 
 ## 概述 (Overview)
 
