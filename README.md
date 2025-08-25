@@ -9,7 +9,23 @@
 
 ## 概述 (Overview)
 
-在不修改任何模型定义代码的前提下，`TransformerEngineINT8` 允许您使用一个简单的 `autocast` 上下文管理器，将模型中的计算密集型部分（如`Linear`层）自动切换到INT8模式。这使得模型能够在几乎不损失精度的情况下，享受到INT8带来的显著的内存节省和潜在的性能提升。
+在不修改任何模型定义代码的前提下，`TransformerEngineINT8` 允许您使用一个简单的 `autocast` 上下文管理器，将模型中的计算密集型部分（如`Linear`层）自动切换到INT8模式。这使得模型能够在几乎不损失精度的情况下（maybe），享受到INT8带来的显著的内存节省和潜在的性能提升。
+
+
+## 路线图 (Roadmap)
+
+我们致力于将`TransformerEngineINT8`打造成一个生产级的量化加速库。
+
+  - [>] 完成 linear 的 QAT 实验与可行性验证
+  - [ ] 核心API (`te_int8_autocast`) 与框架设计
+  - [ ] 基于纯PyTorch的量化感知训练（QAT）功能实现
+  - [ ] 基于纯PyTorch的INT8推理模拟功能实现
+  - [ ] **高性能CUDA Kernels**: 为`Linear`层等实现基于CUTLASS或cuBLAS的INT8 GEMM Kernel，提供真实的性能加速。
+  - [ ] **`torch.compile` 后端集成**: 开发一个自定义后端，将框架的优化能力与PyTorch 2.x的编译器无缝集成。
+  - [ ] **扩展模块支持**: 增加对`nn.Conv2d`、`nn.LayerNorm`等更多模块的量化支持。
+  - [ ] **全面的文档与教程**: 提供详细的API文档、用户指南和性能调优技巧。
+
+
 
 ## 突出特性 (Key Features)
 
@@ -18,9 +34,23 @@
   * \*\* seamlessly 集成PyTorch\*\*: 作为一个纯粹的PyTorch扩展，与现有的生态系统、模型和训练循环无缝集成。
   * **🔧 模块化与可扩展**: 清晰的架构设计，当前使用纯PyTorch后端进行功能验证，并为未来的高性能CUDA Kernel集成和`torch.compile`后端开发预留了接口。
 
-## 安装 (Installation)
 
-您可以通过pip从PyPI安装（即将推出）：
+
+## 架构与原理 (Architecture & Principles)
+
+`TransformerEngineINT8` 的核心在于其**动态模块替换**机制。当进入`te_int8_autocast`上下文时，框架会：
+
+1.  遍历模型计算图，查找所有目标模块（如 `nn.Linear`）。
+2.  将其动态替换为一个内置的、可感知量化的模块 (`QuantizedLinear`)，执行QAT或推理逻辑。
+3.  退出上下文时，所有模块将自动恢复原状，确保对原始模型零侵入。
+
+在训练模式下，我们采用**直通估计器 (Straight-Through Estimator, STE)** 来解决量化操作（如`round()`）不可导的问题，从而保证梯度能够顺畅地回传至全精度的“影子权重”，实现真正的端到端微调。
+
+
+
+## 安装 (Installation)（即将推出）
+
+您可以通过pip从PyPI安装：
 
 ```bash
 pip install transformer-engine-int8
@@ -34,7 +64,7 @@ cd TransformerEngineINT8
 pip install -e .
 ```
 
-## 快速上手 (Quick Start)
+## 快速上手 (Quick Start)（即将推出）
 
 体验`TransformerEngineINT8`的强大功能只需两步：首先进行量化感知训练（微调），然后进行量化推理。
 
@@ -97,28 +127,5 @@ with torch.no_grad():
 print("Inference completed. Output shape:", quantized_output.shape)
 
 ```
-
-## 架构与原理 (Architecture & Principles)
-
-`TransformerEngineINT8` 的核心在于其**动态模块替换**机制。当进入`te_int8_autocast`上下文时，框架会：
-
-1.  遍历模型计算图，查找所有目标模块（如 `nn.Linear`）。
-2.  将其动态替换为一个内置的、可感知量化的模块 (`QuantizedLinear`)。
-3.  该模块根据 `training` 标志，执行QAT或推理逻辑。
-4.  退出上下文时，所有模块将自动恢复原状，确保对原始模型零侵入。
-
-在训练模式下，我们采用**直通估计器 (Straight-Through Estimator, STE)** 来解决量化操作（如`round()`）不可导的问题，从而保证梯度能够顺畅地回传至全精度的“影子权重”，实现真正的端到端微调。
-
-## 路线图 (Roadmap)
-
-我们致力于将`TransformerEngineINT8`打造成一个生产级的量化加速库。
-
-  - [ ] 核心API (`te_int8_autocast`) 与框架设计
-  - [ ] 基于纯PyTorch的量化感知训练（QAT）功能实现
-  - [ ] 基于纯PyTorch的INT8推理模拟功能实现
-  - [ ] **高性能CUDA Kernels**: 为`Linear`层等实现基于CUTLASS或cuBLAS的INT8 GEMM Kernel，提供真实的性能加速。
-  - [ ] **`torch.compile` 后端集成**: 开发一个自定义后端，将框架的优化能力与PyTorch 2.x的编译器无缝集成。
-  - [ ] **扩展模块支持**: 增加对`nn.Conv2d`、`nn.LayerNorm`等更多模块的量化支持。
-  - [ ] **全面的文档与教程**: 提供详细的API文档、用户指南和性能调优技巧。
 
 -----
