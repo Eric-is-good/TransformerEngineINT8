@@ -64,7 +64,7 @@ pip install transformer-engine-int8
 或者，从源代码安装以获取最新版本：
 
 ```bash
-git clone https://github.com/your-username/TransformerEngineINT8.git
+git clone https://github.com/Eric-is-good/TransformerEngineINT8.git
 cd TransformerEngineINT8
 pip install -e .
 ```
