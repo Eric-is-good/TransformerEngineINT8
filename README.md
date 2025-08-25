@@ -16,14 +16,14 @@
 
 我们致力于将`TransformerEngineINT8`打造成一个生产级的量化加速库。
 
-  🟡 完成 linear 的 QAT 实验与可行性验证
-  ⚪️ 核心API (`te_int8_autocast`) 与框架设计
-  ⚪️ 基于纯PyTorch的量化感知训练（QAT）功能实现
-  ⚪️ 基于纯PyTorch的INT8推理模拟功能实现
-  ⚪️ **高性能CUDA Kernels**: 为`Linear`层等实现基于CUTLASS或cuBLAS的INT8 GEMM Kernel，提供真实的性能加速。
-  ⚪️ **`torch.compile` 后端集成**: 开发一个自定义后端，将框架的优化能力与PyTorch 2.x的编译器无缝集成。
-  ⚪️ **扩展模块支持**: 增加对`nn.Conv2d`、`nn.LayerNorm`等更多模块的量化支持。
-  ⚪️ **全面的文档与教程**: 提供详细的API文档、用户指南和性能调优技巧。
+  * [] 🟡 完成 linear 的 QAT 实验与可行性验证
+  * [ ] ⚪️ 核心API (`te_int8_autocast`) 与框架设计
+  * [ ] ⚪️ 基于纯PyTorch的量化感知训练（QAT）功能实现
+  * [ ] ⚪️ 基于纯PyTorch的INT8推理模拟功能实现
+  * [ ] ⚪️ **高性能CUDA Kernels**: 为`Linear`层等实现基于CUTLASS或cuBLAS的INT8 GEMM Kernel，提供真实的性能加速。
+  * [ ] ⚪️ **`torch.compile` 后端集成**: 开发一个自定义后端，将框架的优化能力与PyTorch 2.x的编译器无缝集成。
+  * [ ] ⚪️ **扩展模块支持**: 增加对`nn.Conv2d`、`nn.LayerNorm`等更多模块的量化支持。
+  * [ ] ⚪️ **全面的文档与教程**: 提供详细的API文档、用户指南和性能调优技巧。
 
 
 
