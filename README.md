@@ -71,7 +71,7 @@ pip install -e .
 
 ## 快速上手 (Quick Start)（即将推出）
 
-体验`TransformerEngineINT8`的强大功能只需两步：首先进行量化感知训练（微调），然后进行量化推理。
+无缝体验`TransformerEngineINT8`的强大功能。
 
 ```python
 import torch
