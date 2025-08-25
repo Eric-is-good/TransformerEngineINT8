@@ -91,7 +91,7 @@ class SimpleTransformer(nn.Module):
         memory = self.encoder(src)
         return self.output_layer(memory[:, 0, :]) # 取[CLS] token输出
 
-# --- 步骤一：量化感知训练 (QAT) ---
+# 2. 量化感知训练 (QAT) ---
 
 # 加载预训练好的FP32模型
 model = SimpleTransformer().cuda()
@@ -115,21 +115,6 @@ loss.backward()
 optimizer.step()
 print("QAT step completed. Loss:", loss.item())
 
-
-# --- 步骤二：量化推理 ---
-
-# 加载经过QAT微调的模型
-# model.load_state_dict(torch.load('qat_tuned.pt'))
-model.eval()
-
-print("\n--- Starting Quantized Inference ---")
-with torch.no_grad():
-    # 使用同一个API，但将training设置为False以进入推理模式
-    with te_int8_autocast(training=False):
-        # 在此上下文中, nn.Linear将以高性能INT8推理模式运行
-        quantized_output = model(dummy_data)
-
-print("Inference completed. Output shape:", quantized_output.shape)
 
 ```
 
