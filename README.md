@@ -35,8 +35,8 @@
 ## 突出特性 (Key Features)
 
   * **⚡ 极简的API**: 只需将您的代码包裹在 `te_int8_autocast` 上下文中，即可启用INT8量化，无需手动修改模型。
-  * **🚀 量化感知训练 (QAT)**: 内置对QAT的完整支持，通过直通估计器（Straight-Through Estimator）技术，在微调过程中模拟量化效应，最大程度地保持模型精度。
-  * ** seamlessly 集成PyTorch**: 作为一个纯粹的PyTorch扩展，与现有的生态系统、模型和训练循环无缝集成。
+  * **🧠 量化感知训练 (QAT)**: 内置对QAT的完整支持，通过直通估计器（Straight-Through Estimator）技术，在微调过程中模拟量化效应，最大程度地保持模型精度。
+  * **🚀 seamlessly 集成PyTorch**: 作为一个纯粹的PyTorch扩展，与现有的生态系统、模型和训练循环无缝集成。
   * **🔧 模块化与可扩展**: 清晰的架构设计，当前使用纯PyTorch后端进行功能验证，并为未来的高性能CUDA Kernel集成和`torch.compile`后端开发预留了接口。
 
 
