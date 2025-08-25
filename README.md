@@ -5,7 +5,7 @@
 [](https://opensource.org/licenses/Apache-2.0)
 [](https://www.google.com/search?q=https://your-username.github.io/TransformerEngineINT8/)
 
-**TransformerEngineINT8** 是一个为PyTorch打造的高性能INT8量化加速框架，其设计灵感源自NVIDIA的[Transformer Engine](https://github.com/NVIDIA/TransformerEngine)。它旨在通过一个极其简洁的API，为研究者和工程师提供无缝的量化感知训练（QAT）与高速推理能力，以应对日益增长的Transformer模型带来的计算与显存挑战。
+**TransformerEngineINT8** 是一个为PyTorch打造的高性能INT8量化加速框架，其设计灵感源自NVIDIA的[Transformer Engine](https://github.com/NVIDIA/TransformerEngine)。它旨在通过一个极其简洁的API，提供无缝的量化感知训练（QAT）。
 
 ## 概述 (Overview)
 
