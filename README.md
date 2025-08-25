@@ -16,7 +16,7 @@
 
 我们致力于将`TransformerEngineINT8`打造成一个生产级的量化加速库。
 
-  * [ ] 🟡 完成 linear 的 QAT 实验与可行性验证
+  🟡 完成 linear 的 QAT 实验与可行性验证
   * [ ] ⚪️ 核心API (`te_int8_autocast`) 与框架设计
   * [ ] ⚪️ 基于纯PyTorch的量化感知训练（QAT）功能实现
   * [ ] ⚪️ 基于纯PyTorch的INT8推理模拟功能实现
